@@ -1,4 +1,5 @@
 import os, json, pickle, faiss, numpy as np
+import shutil
 from typing import List, Dict, Tuple, Optional
 from sentence_transformers import SentenceTransformer
 from utils import load_paths, load_text_from_paths, chunk_texts, mmr_select, extract_title
@@ -59,13 +60,44 @@ class RAGPipeline:
         self._build_index_from_records(all_records)
         return len(self.chunks)
 
-    def add_files(self, fileobjs) -> List[str]:
+    def add_files(self, files) -> List[str]:
+        """
+        Accepts list of file paths (str) or file-like objects.
+        Copies into self.docs_dir and indexes incrementally.
+        """
+        os.makedirs(self.docs_dir, exist_ok=True)
         saved = []
-        for f in fileobjs:
-            dst = os.path.join(self.docs_dir, os.path.basename(f.name))
-            with open(dst, "wb") as out:
-                out.write(f.read())
+
+        for f in files or []:
+            # Case 1: already a file path (string)
+            if isinstance(f, str):
+                src = f
+                if not os.path.isfile(src):
+                    continue
+                dst = os.path.join(self.docs_dir, os.path.basename(src))
+                if os.path.abspath(src) != os.path.abspath(dst):
+                    shutil.copy2(src, dst)
+                else:
+                    dst = src
+                saved.append(dst)
+                continue
+
+            # Case 2: file-like (Gradio TemporaryUploadedFile, etc.)
+            name = getattr(f, "name", None) or getattr(f, "orig_name", None) or "upload.bin"
+            dst = os.path.join(self.docs_dir, os.path.basename(name))
+            if hasattr(f, "read"):
+                with open(dst, "wb") as out:
+                    out.write(f.read())
+            else:
+                # last resort: try to treat it as a path
+                src = str(f)
+                if os.path.isfile(src):
+                    shutil.copy2(src, dst)
+                else:
+                    continue
             saved.append(dst)
+
+        # index new files
         texts_by_path = load_text_from_paths(saved)
         new_records = []
         for p, text in texts_by_path.items():

@@ -22,10 +22,9 @@ SYSTEM_HINT = (
 )
 
 def _to_paths(files):
-    """Normalize Gradio Files input (varies by version) into a list of existing file paths."""
+    """Normalize Gradio Files input into a list of existing file paths."""
     paths = []
     for f in files or []:
-        # Newer Gradio may hand us str path; older gives file-like with .name
         if isinstance(f, (str, os.PathLike)):
             p = str(f)
         else:
@@ -34,25 +33,7 @@ def _to_paths(files):
             paths.append(p)
     return paths
 
-def chat(user_msg, history, files):
-    upload_report = None
-
-    # Normalize uploads and index them
-    paths = _to_paths(files)
-    if paths:
-        added = rag.add_files(paths)  # expects list[str]
-        rag.save()
-        if added:
-            upload_report = "📚 Indexed: " + ", ".join(os.path.basename(p) for p in added)
-
-    # Keep last few exchanges only (short context to the LLM)
-    trimmed_history = history[-4:] if history else []
-    answer, citations = rag.answer(
-        user_msg,
-        chat_history=trimmed_history,
-        system_hint=SYSTEM_HINT
-    )
-
+def _format_answer(answer, citations, upload_report=None):
     display = answer
     if citations:
         display += "\n\nSources: " + " ".join(
@@ -60,41 +41,93 @@ def chat(user_msg, history, files):
         )
     if upload_report:
         display = upload_report + "\n\n" + display
-
-    # IMPORTANT: return just a string for ChatInterface to avoid schema bugs
     return display
 
-with gr.Blocks(title="RAG-Powered Chatbot • OpenAI") as demo:
+# ---- Event handlers using Chatbot type="messages" ----
+def on_user_submit(user_msg, messages):
+    """
+    messages: list[dict] like [{"role":"user","content":"..."}, {"role":"assistant","content":"..."}]
+    """
+    messages = messages or []
+    messages.append({"role": "user", "content": user_msg})
+    return "", messages
+
+def on_bot_respond(messages, files):
+    upload_report = None
+    paths = _to_paths(files)
+    if paths:
+        added = rag.add_files(paths)
+        rag.save()
+        if added:
+            upload_report = "📚 Indexed: " + ", ".join(os.path.basename(p) for p in added)
+
+    # Build trimmed chat history as tuples for your pipeline (user, assistant)
+    # Convert messages list to tuples [(u1,a1), (u2,a2), ...] but we only keep last 4 pairs
+    pairs = []
+    last_user = None
+    for m in messages[:-1]:  # exclude the last user just submitted
+        if m["role"] == "user":
+            last_user = m["content"]
+        elif m["role"] == "assistant" and last_user is not None:
+            pairs.append((last_user, m["content"]))
+            last_user = None
+    trimmed = pairs[-4:] if pairs else []
+
+    user_msg = messages[-1]["content"]  # the latest user turn
+
+    answer, citations = rag.answer(
+        user_msg, chat_history=trimmed, system_hint=SYSTEM_HINT
+    )
+
+    messages.append({"role": "assistant", "content": _format_answer(answer, citations, upload_report)})
+    return messages
+
+# ---------- UI ----------
+with gr.Blocks(title="RAG-Powered Chatbot • OpenAI", fill_height=True) as demo:
     gr.Markdown("## 🔵 RAG-Powered Chatbot (OpenAI)")
     with gr.Row():
         with gr.Column(scale=3):
-            gr.ChatInterface(
-                fn=chat,
-                textbox=gr.Textbox(
-                    placeholder="Ask about your documents…",
-                    lines=2
-                ),
-                # Use Files (not File). We avoid 'types="filepath"' for max compatibility.
-                additional_inputs=[
-                    gr.Files(
-                        label="Upload files (optional)",
-                        file_count="multiple",
-                        file_types=[".pdf", ".txt", ".md"],
-                    )
-                ],
+            chatbot = gr.Chatbot(height=480, label="Chatbot", type="messages")
+
+            files = gr.Files(
+                label="Upload files (optional)",
+                type="filepath",
+                file_count="multiple",
+                file_types=[".pdf", ".txt", ".md"],
             )
+
+            with gr.Row():
+                textbox = gr.Textbox(
+                    placeholder="Ask about your documents…",
+                    lines=2,
+                    autofocus=True,
+                    scale=10,
+                )
+                send_btn = gr.Button("Send", scale=1)
+
+            # Enter → send
+            submit_evt = textbox.submit(
+                on_user_submit, inputs=[textbox, chatbot], outputs=[textbox, chatbot]
+            )
+            # Click Send → send
+            send_evt = send_btn.click(
+                on_user_submit, inputs=[textbox, chatbot], outputs=[textbox, chatbot]
+            )
+            # Then bot responds for both
+            for evt in (submit_evt, send_evt):
+                evt.then(on_bot_respond, inputs=[chatbot, files], outputs=[chatbot])
+
         with gr.Column(scale=1):
             gr.Markdown("### Admin")
             btn_reindex = gr.Button("🧰 Rebuild index from /docs")
             out = gr.Markdown()
 
-    def rebuild():
-        n = rag.rebuild_from_folder()
-        rag.save()
-        return f"Rebuilt index from /docs. Chunks: {n}"
+            def rebuild():
+                n = rag.rebuild_from_folder()
+                rag.save()
+                return f"Rebuilt index from /docs. Chunks: {n}"
 
-    btn_reindex.click(rebuild, outputs=out)
+            btn_reindex.click(rebuild, outputs=out)
 
 if __name__ == "__main__":
-    # Bind to loopback to avoid localhost/proxy issues on Windows/VPNs
     demo.queue().launch(server_name="127.0.0.1", server_port=7860, share=False)
