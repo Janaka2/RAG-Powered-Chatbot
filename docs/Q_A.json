@@ -1,0 +1,467 @@
+[
+  {
+  "q": "Tell me about yourself.",
+  "a": "Sure. I'm Janaka, a senior full-stack Java/Spring engineer who loves turning complex systems into reliable, easy-to-run platforms. I've been building enterprise software since 2004, mostly in banking and the public sector, and I focus on measurable outcomes: faster platforms, cleaner releases, fewer incidents. I'm based in Zug on a Swiss C permit with a Belgian passport, so no sponsorship needed. I'm comfortable hybrid around Zurich/Zug, and my notice period is two months. Strengths: Java/Spring Boot, CI/CD and Kubernetes/OpenShift, Oracle performance tuning, and practical AI (RAG and lightweight agents) that plug into real workflows. Colleagues know me as steady under pressure and clear on priorities. Personally, I'm family-focused and practice mindfulness and meditation, which keeps me grounded. I'd love to learn more about your goals and where I can create impact."
+  },
+  {
+    "q": "Where are you based?",
+    "a": "Zug, Switzerland. :contentReference[oaicite:0]{index=0}"
+  },
+  {
+    "q": "What’s your work authorization in Switzerland?",
+    "a": "Swiss C permit (permanent residency). :contentReference[oaicite:1]{index=1}"
+  },
+  {
+    "q": "How can we contact you quickly?",
+    "a": "+41 76 224 84 45 or janaka2@gmail.com. :contentReference[oaicite:2]{index=2}"
+  },
+  {
+    "q": "What roles are you targeting?",
+    "a": "Senior Full-Stack Java/Spring roles with DevOps and applied AI (LLMs/RAG/agents) impact. :contentReference[oaicite:3]{index=3}"
+  },
+  {
+    "q": "Give me your one-line value proposition.",
+    "a": "I build resilient Java platforms and bring them into the AI era—practical automation that moves business metrics. :contentReference[oaicite:4]{index=4}"
+  },
+
+  {
+    "q": "How many years of total experience do you have?",
+    "a": "≈21 years (since 2004), delivering mission-critical software across banking and the public sector. :contentReference[oaicite:5]{index=5}"
+  },
+  {
+    "q": "When did you start your career?",
+    "a": "2004 (teaching + banking, then enterprise engineering). :contentReference[oaicite:6]{index=6}"
+  },
+  {
+    "q": "How many years in the banking domain?",
+    "a": "≈10 years across UBS, Credit Suisse, and Union Bank of Colombo. :contentReference[oaicite:7]{index=7}"
+  },
+  {
+    "q": "How much public-sector experience do you have?",
+    "a": "≈6 years 8 months at the European Commission (DIGIT). :contentReference[oaicite:8]{index=8}"
+  },
+  {
+    "q": "Other domains you’ve touched?",
+    "a": "Telecom, Healthcare, Packaging, Travel/Leisure, plus enterprise automation. :contentReference[oaicite:9]{index=9}"
+  },
+
+  {
+    "q": "Current focus?",
+    "a": "UBS via Cognizant (2024–present): enterprise apps, data/FX systems, and AI automation pilots. :contentReference[oaicite:10]{index=10}"
+  },
+  {
+    "q": "Recent employer history?",
+    "a": "UBS (2024–present), Credit Suisse (2019–2024), UBS (2018–2019), European Commission (multiple stints). :contentReference[oaicite:11]{index=11}"
+  },
+  {
+    "q": "A highlight outcome you’re proud of?",
+    "a": "Boosted an FX trading platform’s responsiveness by ~20% and improved execution times. :contentReference[oaicite:12]{index=12}"
+  },
+  {
+    "q": "Your guiding principle?",
+    "a": "Find a way—or make one. Ownership, clarity, and measurable impact. :contentReference[oaicite:13]{index=13}"
+  },
+  {
+    "q": "What can a team expect from you?",
+    "a": "Ownership end-to-end, calm leadership under pressure, and practical AI integrated with the stack. :contentReference[oaicite:14]{index=14}"
+  },
+
+  {
+    "q": "Core technical stack?",
+    "a": "Java/Spring Boot, REST/GraphQL, CI/CD, Kubernetes/OpenShift/Docker, Kafka, Oracle/PLSQL, observability. :contentReference[oaicite:15]{index=15}"
+  },
+  {
+    "q": "LLM/AI experience in one sentence?",
+    "a": "Hands-on with LLM agents, retrieval pipelines, prompt/parameter optimization; ran local models like Llama 3. :contentReference[oaicite:16]{index=16}"
+  },
+  {
+    "q": "Do you work with modern Java versions?",
+    "a": "Yes—Java 11–17 across recent enterprise projects. :contentReference[oaicite:17]{index=17}"
+  },
+  {
+    "q": "Spring stack familiarity?",
+    "a": "Spring 5, Spring Boot MVC, Spring Data, microservices patterns. :contentReference[oaicite:18]{index=18}"
+  },
+  {
+    "q": "Messaging/streaming tools?",
+    "a": "Apache Kafka; integrated streaming into case-management/data-lake workflows. :contentReference[oaicite:19]{index=19}"
+  },
+
+  {
+    "q": "DevOps and deployment tools you use?",
+    "a": "OpenShift, Kubernetes, Docker, Helm, Jenkins, GitOps, CI/CD. :contentReference[oaicite:20]{index=20}"
+  },
+  {
+    "q": "Observability stack?",
+    "a": "Splunk and Grafana in enterprise environments. :contentReference[oaicite:21]{index=21}"
+  },
+  {
+    "q": "Databases you’re comfortable with?",
+    "a": "Oracle/PLSQL (plus H2 for dev/test), schema/versioning with Liquibase. :contentReference[oaicite:22]{index=22}"
+  },
+  {
+    "q": "Frontend experience?",
+    "a": "ReactJS; earlier Angular 2–4, KendoUI, Bootstrap, and Adobe Flex. :contentReference[oaicite:23]{index=23}"
+  },
+  {
+    "q": "API styles?",
+    "a": "REST and GraphQL for enterprise services. :contentReference[oaicite:24]{index=24}"
+  },
+
+  {
+    "q": "Key project: GBSS MDM—what did you do?",
+    "a": "Built a high-performance Master Data Management tool from scratch with ongoing enhancements. :contentReference[oaicite:25]{index=25}"
+  },
+  {
+    "q": "Key project: DSL big-data endpoints?",
+    "a": "Developed a web app to build dynamic consumer endpoints for a big-data platform. :contentReference[oaicite:26]{index=26}"
+  },
+  {
+    "q": "Key project: FX trading platform?",
+    "a": "Designed Java backend, applied FIX knowledge, boosted responsiveness ~20%, improved execution. :contentReference[oaicite:27]{index=27}"
+  },
+  {
+    "q": "Key project: case-management suite?",
+    "a": "Multiple tools from scratch; streaming + lake integration for high-volume search and analytics. :contentReference[oaicite:28]{index=28}"
+  },
+  {
+    "q": "Key project: cash & card management?",
+    "a": "Renovated the app and integrated hardware with the web stack. :contentReference[oaicite:29]{index=29}"
+  },
+
+  {
+    "q": "What did you modernize at UBS (2018–2019)?",
+    "a": "Upgraded 20+ components, moved SVN→GIT, automated pipelines, and delivered REST services. :contentReference[oaicite:30]{index=30}"
+  },
+  {
+    "q": "Any CI improvements you delivered?",
+    "a": "Jenkins automation for build/test/release; improved coverage and automated reports/emails. :contentReference[oaicite:31]{index=31}"
+  },
+  {
+    "q": "Have you built dynamic UIs?",
+    "a": "Yes—React UIs driven by JSON schema; dynamic forms in enterprise apps. :contentReference[oaicite:32]{index=32}"
+  },
+  {
+    "q": "European Commission—what kind of work?",
+    "a": "E-procurement and workflows: microservices, Spring Integration, JBPM, unit/integration tests. :contentReference[oaicite:33]{index=33}"
+  },
+  {
+    "q": "Any workflow engines used?",
+    "a": "JBPM for business process workflows at the European Commission. :contentReference[oaicite:34]{index=34}"
+  },
+
+  {
+    "q": "Telecom experience summary?",
+    "a": "Multimedia telecom integrations (Arris NG video server, PVR control, XML-RPC), ~1 year. :contentReference[oaicite:35]{index=35}"
+  },
+  {
+    "q": "Healthcare experience summary?",
+    "a": "J&J (7 months) + ABSI (11 months): hospital/health-care solutions, testing, maintenance. :contentReference[oaicite:36]{index=36}"
+  },
+  {
+    "q": "Packaging/containers domain experience?",
+    "a": "Van Genechten Packaging—design/development, enterprise JEE stack, ~1 year 7 months. :contentReference[oaicite:37]{index=37}"
+  },
+  {
+    "q": "Travel/leisure domain experience?",
+    "a": "Roomsnet—hotel reservation domain as Tech Lead/Senior Dev (~1 year 8 months). :contentReference[oaicite:38]{index=38}"
+  },
+  {
+    "q": "Early banking experience?",
+    "a": "Union Bank of Colombo—core banking, loans, leasing, cheques/passbooks; EJB2/JSP/Servlets. :contentReference[oaicite:39]{index=39}"
+  },
+
+  {
+    "q": "Your leadership style in a sentence?",
+    "a": "Quiet, steady leadership—reduce noise, keep momentum, finish what we start. :contentReference[oaicite:40]{index=40}"
+  },
+  {
+    "q": "How do you approach AI in enterprises?",
+    "a": "Practical, testable automation—retrieval, agents, and metrics, integrated with existing platforms. :contentReference[oaicite:41]{index=41}"
+  },
+  {
+    "q": "Do you run models locally as well as via APIs?",
+    "a": "Yes—experiments with local LLMs like Llama 3 and production workflows via APIs. :contentReference[oaicite:42]{index=42}"
+  },
+  {
+    "q": "Do you work with FIX in trading contexts?",
+    "a": "Yes—applied FIX protocol in the FX trading platform work at Credit Suisse. :contentReference[oaicite:43]{index=43}"
+  },
+  {
+    "q": "Any experience with data lakes?",
+    "a": "Integrated case-management with streaming for high-volume search and lake analysis. :contentReference[oaicite:44]{index=44}"
+  },
+
+  {
+    "q": "What build/packaging tools do you use?",
+    "a": "Maven, Liquibase for DB versioning, packaging for Linux servers, automated deployments. :contentReference[oaicite:45]{index=45}"
+  },
+  {
+    "q": "Have you worked with GraphQL?",
+    "a": "Yes—GraphQL used alongside REST in enterprise services. :contentReference[oaicite:46]{index=46}"
+  },
+  {
+    "q": "Any experience with WebLogic or JBOSS?",
+    "a": "Yes—WebLogic (incl. production), JBOSS (JEE/EJB stacks) across several projects. :contentReference[oaicite:47]{index=47}"
+  },
+  {
+    "q": "Older JEE exposure?",
+    "a": "EJB2/EJB3, Struts, SOAP, JAXB/JAX-WS, XML/XSD, ActionScript/Flex. :contentReference[oaicite:48]{index=48}"
+  },
+  {
+    "q": "Testing practices?",
+    "a": "Unit/integration tests with JUnit/Mockito; CI coverage improvements; Cucumber BDD earlier. :contentReference[oaicite:49]{index=49}"
+  },
+
+  {
+    "q": "Tooling for version control and migration?",
+    "a": "SVN→GIT migrations, GitHub/Git, automated pipelines via Jenkins. :contentReference[oaicite:50]{index=50}"
+  },
+  {
+    "q": "Do you work Scrum/Agile?",
+    "a": "Yes—Scrum ceremonies and delivery across multiple enterprises. :contentReference[oaicite:51]{index=51}"
+  },
+  {
+    "q": "Have you delivered on Linux servers?",
+    "a": "Yes—build/packaging and deployments to Linux targets in enterprise CI/CD. :contentReference[oaicite:52]{index=52}"
+  },
+  {
+    "q": "Have you done architectural reviews?",
+    "a": "Yes—presenting designs for architectural review and compliance. :contentReference[oaicite:53]{index=53}"
+  },
+  {
+    "q": "Any hardware integrations?",
+    "a": "Yes—cash & card management hardware integrated with web applications. :contentReference[oaicite:54]{index=54}"
+  },
+
+  {
+    "q": "Languages you speak?",
+    "a": "English (Full Professional), Dutch (Limited), French (Elementary), German (Elementary), Sinhalese (Native). :contentReference[oaicite:55]{index=55}"
+  },
+  {
+    "q": "Highest education?",
+    "a": "BSc in Computer Science, Statistics, and Mathematics. :contentReference[oaicite:56]{index=56}"
+  },
+  {
+    "q": "Any notable certifications?",
+    "a": "Sun/Java certs (SCJP, SCBCD, SCEA1, SCWCD) and Spring Certified Professional (in progress). :contentReference[oaicite:57]{index=57}"
+  },
+  {
+    "q": "Other upskilling highlights?",
+    "a": "Unix/Linux fundamentals, Goal-setting/leadership courses, Mental Health First Aid, ChatGPT at work. :contentReference[oaicite:58]{index=58}"
+  },
+  {
+    "q": "Links we can review?",
+    "a": "LinkedIn, GitHub, blog, and resume site are all available on my profile. :contentReference[oaicite:59]{index=59}"
+  },
+
+  {
+    "q": "Do you prefer permanent or contract?",
+    "a": "Open to both—priority is meaningful impact and team fit. :contentReference[oaicite:60]{index=60}"
+  },
+  {
+    "q": "Remote/hybrid expectations?",
+    "a": "Based in Zug; flexible to align with team rhythm and delivery needs. :contentReference[oaicite:61]{index=61}"
+  },
+  {
+    "q": "Willing to travel if needed?",
+    "a": "Yes—when it supports delivery and stakeholder alignment. :contentReference[oaicite:62]{index=62}"
+  },
+  {
+    "q": "What motivates you?",
+    "a": "Shaping reliable platforms and shipping AI that actually helps the business. :contentReference[oaicite:63]{index=63}"
+  },
+  {
+    "q": "How do you handle pressure?",
+    "a": "I keep teams steady, clarify the path, and finish what we start. :contentReference[oaicite:64]{index=64}"
+  },
+
+  {
+    "q": "Do you have GitHub we can browse?",
+    "a": "Yes—github.com/Janaka2. :contentReference[oaicite:65]{index=65}"
+  },
+  {
+    "q": "Resume website?",
+    "a": "https://janaka2.github.io/resume/ :contentReference[oaicite:66]{index=66}"
+  },
+  {
+    "q": "Blog or writing samples?",
+    "a": "javawithme.wordpress.com/ for posts and insights. :contentReference[oaicite:67]{index=67}"
+  },
+  {
+    "q": "LinkedIn profile?",
+    "a": "linkedin.com/in/janakapremathilaka :contentReference[oaicite:68]{index=68}"
+  },
+  {
+    "q": "Preferred communication style?",
+    "a": "Straightforward, warm, and focused on outcomes and clarity. :contentReference[oaicite:69]{index=69}"
+  },
+
+  {
+    "q": "What’s your notice period?",
+    "a": "Typical Swiss arrangements are around 2 months—happy to confirm the exact date for your process."
+  },
+  {
+    "q": "Earliest practical start date?",
+    "a": "Can align with your timeline; we can lock dates once we align on scope."
+  },
+  {
+    "q": "Salary expectations?",
+    "a": "Open to discussing a package aligned to scope, impact, and market benchmarks."
+  },
+  {
+    "q": "Availability for interviews?",
+    "a": "Flexible across CET business hours; can adapt for key stakeholders."
+  },
+  {
+    "q": "Preferred engagement length (if contract)?",
+    "a": "Long enough to deliver outcomes end-to-end—typically 6–12 months+ for enterprise value."
+  },
+
+  {
+    "q": "Comfort with data privacy and compliance?",
+    "a": "Experienced in banking/public-sector environments—secure by default, compliance-aware. :contentReference[oaicite:70]{index=70}"
+  },
+  {
+    "q": "Approach to legacy modernization?",
+    "a": "Stabilize first, then iterate: tests, observability, and incremental refactors with CI/CD. :contentReference[oaicite:71]{index=71}"
+  },
+  {
+    "q": "Do you build for operability from day one?",
+    "a": "Yes—logging/metrics from the start; dashboards and alerts to reduce MTTR. :contentReference[oaicite:72]{index=72}"
+  },
+  {
+    "q": "Experience with build pipelines?",
+    "a": "Automated Jenkins pipelines, GitOps flows, quality gates, and release packaging. :contentReference[oaicite:73]{index=73}"
+  },
+  {
+    "q": "How do you ensure performance?",
+    "a": "Measure, remove bottlenecks, test under load—e.g., FX platform responsiveness improvement. :contentReference[oaicite:74]{index=74}"
+  },
+
+  {
+    "q": "Comfort with message routing and EAI?",
+    "a": "Yes—Spring Integration patterns (routing, transform, aggregate, sync). :contentReference[oaicite:75]{index=75}"
+  },
+  {
+    "q": "Experience with workflows/BPM?",
+    "a": "JBPM workflows integrated into enterprise processes. :contentReference[oaicite:76]{index=76}"
+  },
+  {
+    "q": "Do you design APIs?",
+    "a": "Yes—REST/GraphQL services with schema/versioning and contract clarity. :contentReference[oaicite:77]{index=77}"
+  },
+  {
+    "q": "Comfort with release management?",
+    "a": "End-to-end release activities, including packaging, promotions, and auditing. :contentReference[oaicite:78]{index=78}"
+  },
+  {
+    "q": "Do you write documentation?",
+    "a": "Yes—architecture notes, runbooks, and concise READMEs to keep teams unblocked. :contentReference[oaicite:79]{index=79}"
+  },
+
+  {
+    "q": "How do you collaborate with non-technical stakeholders?",
+    "a": "Start with outcomes, keep language simple, and show progress through small wins. :contentReference[oaicite:80]{index=80}"
+  },
+  {
+    "q": "Have you led small teams?",
+    "a": "Yes—quiet leadership, mentoring, and creating a steady delivery rhythm. :contentReference[oaicite:81]{index=81}"
+  },
+  {
+    "q": "Do you coach on testing and CI?",
+    "a": "Yes—help teams raise coverage, automate checks, and shorten feedback loops. :contentReference[oaicite:82]{index=82}"
+  },
+  {
+    "q": "How do you handle urgent incidents?",
+    "a": "Stabilize first (mitigate), then debug with data, and prevent recurrence. :contentReference[oaicite:83]{index=83}"
+  },
+  {
+    "q": "What makes you different?",
+    "a": "Steady under pressure and relentlessly outcome-driven—no hype, just results. :contentReference[oaicite:84]{index=84}"
+  },
+
+  {
+    "q": "Do you have hands-on Kafka experience?",
+    "a": "Yes—streaming use-cases and data-lake integrations in case-management systems. :contentReference[oaicite:85]{index=85}"
+  },
+  {
+    "q": "Do you practice Infra as Code or Helm charts?",
+    "a": "Yes—Helm for K8s packaging and consistent release automation. :contentReference[oaicite:86]{index=86}"
+  },
+  {
+    "q": "Have you worked with Liquibase?",
+    "a": "Yes—DB schema/versioning and repeatable migrations. :contentReference[oaicite:87]{index=87}"
+  },
+  {
+    "q": "Any GraphQL production usage?",
+    "a": "Yes—GraphQL exposed for select enterprise services where it fit best. :contentReference[oaicite:88]{index=88}"
+  },
+  {
+    "q": "Do you still code daily?",
+    "a": "Yes—hands-on engineer first; leadership by example. :contentReference[oaicite:89]{index=89}"
+  },
+
+  {
+    "q": "Are you open to mentoring juniors?",
+    "a": "Absolutely—raising the bar together is part of the job. :contentReference[oaicite:90]{index=90}"
+  },
+  {
+    "q": "Do you write tests first?",
+    "a": "I aim for fast feedback—tests around hot paths and critical flows early. :contentReference[oaicite:91]{index=91}"
+  },
+  {
+    "q": "Approach to code reviews?",
+    "a": "Kind, specific, and actionable—consistency and clarity over clever tricks. :contentReference[oaicite:92]{index=92}"
+  },
+  {
+    "q": "Do you document decisions (ADRs)?",
+    "a": "Yes—lightweight ADRs keep context clear and future changes easier. :contentReference[oaicite:93]{index=93}"
+  },
+  {
+    "q": "How do you choose tools?",
+    "a": "Fit to purpose, team skill, and operability—not fashion. :contentReference[oaicite:94]{index=94}"
+  },
+
+  {
+    "q": "Any experience with Jenkins + quality gates?",
+    "a": "Yes—pipelines with static analysis, test thresholds, and packaging/release steps. :contentReference[oaicite:95]{index=95}"
+  },
+  {
+    "q": "Have you handled migrations between VCS systems?",
+    "a": "Yes—planned and executed SVN→GIT migrations with minimal disruption. :contentReference[oaicite:96]{index=96}"
+  },
+  {
+    "q": "Do you work with containers daily?",
+    "a": "Yes—Docker images, K8s manifests/Helm, and cluster deployments. :contentReference[oaicite:97]{index=97}"
+  },
+  {
+    "q": "Any experience integrating hardware?",
+    "a": "Yes—cash & card systems integrated with web apps for operations. :contentReference[oaicite:98]{index=98}"
+  },
+  {
+    "q": "Have you built master-data systems?",
+    "a": "Yes—GBSS MDM built from scratch and kept evolving. :contentReference[oaicite:99]{index=99}"
+  },
+
+  {
+    "q": "Do you contribute beyond code?",
+    "a": "Yes—architecture inputs, release planning, and mentoring to keep teams moving. :contentReference[oaicite:100]{index=100}"
+  },
+  {
+    "q": "Can you handle stakeholder demos?",
+    "a": "Yes—clear, concise demos focused on outcomes and next steps. :contentReference[oaicite:101]{index=101}"
+  },
+  {
+    "q": "What’s your documentation style?",
+    "a": "Short, visual where possible, with links to code and dashboards. :contentReference[oaicite:102]{index=102}"
+  },
+  {
+    "q": "How do you keep learning?",
+    "a": "Daily habits, certifications in progress, and shipping small experiments. :contentReference[oaicite:103]{index=103}"
+  },
+  {
+    "q": "What’s your leadership promise?",
+    "a": "I’ll keep the team calm, the plan clear, and the bar high. :contentReference[oaicite:104]{index=104}"
+  }
+]
