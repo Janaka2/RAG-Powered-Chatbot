@@ -1,14 +1,12 @@
-title: RAG Powerd Chat Bot
-emoji: 🔥
-colorFrom: gray
-colorTo: blue
+title: RAG_Powerd_Chat_Bot
+emoji: 🤖
+colorFrom: indigo
+colorTo: purple
 sdk: gradio
-sdk_version: 5.49.1
+# Use the version you install in requirements.txt (or omit if unsure)
+sdk_version: "4.44.0"
 app_file: app.py
 pinned: false
-license: apache-2.0
-short_description: RAG Powerd Chat Bot
-python_version: 3.12
 
 # RAG-Powered Chatbot (FAISS + MiniLM + Gradio)
 
