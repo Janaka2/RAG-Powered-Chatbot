@@ -1,36 +1,35 @@
-name: Deploy to Hugging Face Space
+name: Sync to Hugging Face Space
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]   # change if your default branch is different
   workflow_dispatch:
 
 jobs:
-  deploy:
+  sync:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
 
-      # Optional: ensure your repo has a top-level README.md with Spaces metadata
-      - name: Ensure README has Spaces metadata
+      - name: Set git identity
         run: |
-          if ! grep -q "sdk: gradio" README.md; then
-            echo "Missing Spaces metadata. Please add it as shown in the instructions."
-          fi
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
 
-      - name: Publish to Hugging Face Hub (Space)
-        uses: huggingface/action-publish-huggingface-hub@v1
+      - name: Install Git LFS
+        run: |
+          git lfs install
+
+      - name: Push to HF Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        with:
-          repo-type: space
-          # Set YOUR username_or_org and space name:
-          repo: janaka2/RAG_Powerd_Chat_Bot
-          # Pick the SDK you use
-          space-sdk: gradio
-          # Optionally set the hardware (see HF docs for options)
-          # space-hardware: cpu-basic
-          # Optional: which branch of the Space to push to
-          # branch: main
+          HF_USER:  janaka2                     # <-- set your HF username/org
+          HF_SPACE: RAG_Powerd_Chat_Bot         # <-- EXACT space name in the URL
+          BRANCH:   main
+        run: |
+          # Push current branch to the Space's main branch
+          git push "https://${HF_USER}:${HF_TOKEN}@huggingface.co/spaces/${HF_USER}/${HF_SPACE}" "${BRANCH}:${BRANCH}"
