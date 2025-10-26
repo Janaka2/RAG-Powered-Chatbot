@@ -23,7 +23,6 @@ jobs:
         run: |
           ls -la
           test -f app.py || { echo "::error::app.py missing at repo root"; exit 1; }
-          test -f README.md || echo "::warning::README.md missing (consider Spaces front-matter)"
 
       - name: Git identity & LFS
         run: |
@@ -34,17 +33,22 @@ jobs:
       - name: Install HF CLI
         run: pip install --upgrade "huggingface_hub>=0.36.0"
 
-      - name: Verify token & login via credential helper
+      - name: Validate token & login (no token printed)
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
+          set -e
           if [ -z "$HF_TOKEN" ]; then
             echo "::error::HF_TOKEN secret is missing"; exit 1
           fi
-          HUGGINGFACE_HUB_TOKEN="$HF_TOKEN" huggingface-cli whoami
-          echo "$HF_TOKEN" | huggingface-cli login --stdin --add-to-git-credential
+          # quick format sanity (length only; value stays masked)
+          echo "HF_TOKEN length: ${#HF_TOKEN}"
+          # Verify identity with new CLI (env var)
+          HUGGINGFACE_HUB_TOKEN="$HF_TOKEN" hf auth whoami
+          # Cache credentials for git
+          echo "$HF_TOKEN" | hf auth login --stdin --add-to-git-credential
 
-      - name: Push to HF Space (HEAD -> main) without embedding token
+      - name: Push to HF Space (HEAD -> main)
         run: |
           set -e
           REMOTE="https://huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE}"
