@@ -8,6 +8,7 @@ app_file: app.py
 pinned: false
 license: apache-2.0
 short_description: RAG Powerd Chat Bot
+python_version: 3.12
 
 # RAG-Powered Chatbot (FAISS + MiniLM + Gradio)
 
