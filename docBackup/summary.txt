@@ -1,0 +1,11 @@
+Senior Full-Stack Java/Spring Engineer & AI Solutions Architect (20+ years). I build resilient, observable microservices and pragmatic AI (Azure OpenAI, RAG, agents) that move business metrics. Strengths: Java 17/21, Spring Boot 3, AKS, Azure networking/Key Vault/RBAC, OpenTelemetry → Splunk, Oracle performance tuning (AWR, indexing/partitioning), and calm leadership under pressure. I also ship applied-AI with LLMs, RAG, LangChain, CrewAI, AutoGen—with guardrails, evaluation, and cost control.
+
+🌍 Sri Lanka → Brussels (10y) → Liverpool (1y) → Switzerland (since 2018). Based in Zug. Swiss C permit (no sponsorship).
+🧭 Principle: find a way—or make one.
+💡 What you get:
+• Calm, steady leadership under pressure
+• Enterprise-grade delivery with clear ownership
+• Practical AI that integrates with real business needs
+
+📅 Notice: 2 months
+📞 Contact: +41 76 224 84 45

@@ -1,0 +1,90 @@
+{"id": "PQ001", "question": "What are the leave days and carryover in year 2020?", "answers": ["20 days; carryover 2."], "expected_context_doc_ids": ["PD001"], "type": "extractive"}
+{"id": "PQ002", "question": "What is the SLO p95 and at what RPS?", "answers": ["180 ms at 200 RPS."], "expected_context_doc_ids": ["PD001"], "type": "extractive"}
+{"id": "PQ003", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["15.3 CHF."], "expected_context_doc_ids": ["PD001"], "type": "arithmetic"}
+{"id": "PQ004", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.3.."], "expected_context_doc_ids": ["PD001"], "type": "concept"}
+{"id": "PQ005", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.1, b=0.3.."], "expected_context_doc_ids": ["PD001"], "type": "extractive"}
+{"id": "PQ006", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["250 km driving; 150 minutes by the fastest train."], "expected_context_doc_ids": ["PD001"], "type": "extractive"}
+{"id": "PQ007", "question": "What are the leave days and carryover in year 2021?", "answers": ["21 days; carryover 3."], "expected_context_doc_ids": ["PD002"], "type": "extractive"}
+{"id": "PQ008", "question": "What is the SLO p95 and at what RPS?", "answers": ["181 ms at 210 RPS."], "expected_context_doc_ids": ["PD002"], "type": "extractive"}
+{"id": "PQ009", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["15.47 CHF."], "expected_context_doc_ids": ["PD002"], "type": "arithmetic"}
+{"id": "PQ010", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.32.."], "expected_context_doc_ids": ["PD002"], "type": "concept"}
+{"id": "PQ011", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.2, b=0.35.."], "expected_context_doc_ids": ["PD002"], "type": "extractive"}
+{"id": "PQ012", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["251 km driving; 151 minutes by the fastest train."], "expected_context_doc_ids": ["PD002"], "type": "extractive"}
+{"id": "PQ013", "question": "What are the leave days and carryover in year 2022?", "answers": ["22 days; carryover 4."], "expected_context_doc_ids": ["PD003"], "type": "extractive"}
+{"id": "PQ014", "question": "What is the SLO p95 and at what RPS?", "answers": ["182 ms at 220 RPS."], "expected_context_doc_ids": ["PD003"], "type": "extractive"}
+{"id": "PQ015", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["15.64 CHF."], "expected_context_doc_ids": ["PD003"], "type": "arithmetic"}
+{"id": "PQ016", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.34.."], "expected_context_doc_ids": ["PD003"], "type": "concept"}
+{"id": "PQ017", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.3, b=0.4.."], "expected_context_doc_ids": ["PD003"], "type": "extractive"}
+{"id": "PQ018", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["252 km driving; 152 minutes by the fastest train."], "expected_context_doc_ids": ["PD003"], "type": "extractive"}
+{"id": "PQ019", "question": "What are the leave days and carryover in year 2023?", "answers": ["23 days; carryover 5."], "expected_context_doc_ids": ["PD004"], "type": "extractive"}
+{"id": "PQ020", "question": "What is the SLO p95 and at what RPS?", "answers": ["183 ms at 230 RPS."], "expected_context_doc_ids": ["PD004"], "type": "extractive"}
+{"id": "PQ021", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["15.81 CHF."], "expected_context_doc_ids": ["PD004"], "type": "arithmetic"}
+{"id": "PQ022", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.36.."], "expected_context_doc_ids": ["PD004"], "type": "concept"}
+{"id": "PQ023", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.4, b=0.45.."], "expected_context_doc_ids": ["PD004"], "type": "extractive"}
+{"id": "PQ024", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["253 km driving; 153 minutes by the fastest train."], "expected_context_doc_ids": ["PD004"], "type": "extractive"}
+{"id": "PQ025", "question": "What are the leave days and carryover in year 2024?", "answers": ["24 days; carryover 6."], "expected_context_doc_ids": ["PD005"], "type": "extractive"}
+{"id": "PQ026", "question": "What is the SLO p95 and at what RPS?", "answers": ["184 ms at 240 RPS."], "expected_context_doc_ids": ["PD005"], "type": "extractive"}
+{"id": "PQ027", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["15.98 CHF."], "expected_context_doc_ids": ["PD005"], "type": "arithmetic"}
+{"id": "PQ028", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.38.."], "expected_context_doc_ids": ["PD005"], "type": "concept"}
+{"id": "PQ029", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.5, b=0.5.."], "expected_context_doc_ids": ["PD005"], "type": "extractive"}
+{"id": "PQ030", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["254 km driving; 154 minutes by the fastest train."], "expected_context_doc_ids": ["PD005"], "type": "extractive"}
+{"id": "PQ031", "question": "What are the leave days and carryover in year 2025?", "answers": ["25 days; carryover 7."], "expected_context_doc_ids": ["PD006"], "type": "extractive"}
+{"id": "PQ032", "question": "What is the SLO p95 and at what RPS?", "answers": ["185 ms at 250 RPS."], "expected_context_doc_ids": ["PD006"], "type": "extractive"}
+{"id": "PQ033", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["16.15 CHF."], "expected_context_doc_ids": ["PD006"], "type": "arithmetic"}
+{"id": "PQ034", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.4.."], "expected_context_doc_ids": ["PD006"], "type": "concept"}
+{"id": "PQ035", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.6, b=0.55.."], "expected_context_doc_ids": ["PD006"], "type": "extractive"}
+{"id": "PQ036", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["255 km driving; 155 minutes by the fastest train."], "expected_context_doc_ids": ["PD006"], "type": "extractive"}
+{"id": "PQ037", "question": "What are the leave days and carryover in year 2020?", "answers": ["26 days; carryover 2."], "expected_context_doc_ids": ["PD007"], "type": "extractive"}
+{"id": "PQ038", "question": "What is the SLO p95 and at what RPS?", "answers": ["186 ms at 260 RPS."], "expected_context_doc_ids": ["PD007"], "type": "extractive"}
+{"id": "PQ039", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["16.32 CHF."], "expected_context_doc_ids": ["PD007"], "type": "arithmetic"}
+{"id": "PQ040", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.42.."], "expected_context_doc_ids": ["PD007"], "type": "concept"}
+{"id": "PQ041", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.7, b=0.6.."], "expected_context_doc_ids": ["PD007"], "type": "extractive"}
+{"id": "PQ042", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["256 km driving; 156 minutes by the fastest train."], "expected_context_doc_ids": ["PD007"], "type": "extractive"}
+{"id": "PQ043", "question": "What are the leave days and carryover in year 2021?", "answers": ["27 days; carryover 3."], "expected_context_doc_ids": ["PD008"], "type": "extractive"}
+{"id": "PQ044", "question": "What is the SLO p95 and at what RPS?", "answers": ["187 ms at 270 RPS."], "expected_context_doc_ids": ["PD008"], "type": "extractive"}
+{"id": "PQ045", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["16.49 CHF."], "expected_context_doc_ids": ["PD008"], "type": "arithmetic"}
+{"id": "PQ046", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.44.."], "expected_context_doc_ids": ["PD008"], "type": "concept"}
+{"id": "PQ047", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.8, b=0.65.."], "expected_context_doc_ids": ["PD008"], "type": "extractive"}
+{"id": "PQ048", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["257 km driving; 157 minutes by the fastest train."], "expected_context_doc_ids": ["PD008"], "type": "extractive"}
+{"id": "PQ049", "question": "What are the leave days and carryover in year 2022?", "answers": ["20 days; carryover 4."], "expected_context_doc_ids": ["PD009"], "type": "extractive"}
+{"id": "PQ050", "question": "What is the SLO p95 and at what RPS?", "answers": ["188 ms at 280 RPS."], "expected_context_doc_ids": ["PD009"], "type": "extractive"}
+{"id": "PQ051", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["16.66 CHF."], "expected_context_doc_ids": ["PD009"], "type": "arithmetic"}
+{"id": "PQ052", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.46.."], "expected_context_doc_ids": ["PD009"], "type": "concept"}
+{"id": "PQ053", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.9, b=0.3.."], "expected_context_doc_ids": ["PD009"], "type": "extractive"}
+{"id": "PQ054", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["258 km driving; 158 minutes by the fastest train."], "expected_context_doc_ids": ["PD009"], "type": "extractive"}
+{"id": "PQ055", "question": "What are the leave days and carryover in year 2023?", "answers": ["21 days; carryover 5."], "expected_context_doc_ids": ["PD010"], "type": "extractive"}
+{"id": "PQ056", "question": "What is the SLO p95 and at what RPS?", "answers": ["189 ms at 290 RPS."], "expected_context_doc_ids": ["PD010"], "type": "extractive"}
+{"id": "PQ057", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["16.83 CHF."], "expected_context_doc_ids": ["PD010"], "type": "arithmetic"}
+{"id": "PQ058", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.48.."], "expected_context_doc_ids": ["PD010"], "type": "concept"}
+{"id": "PQ059", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=2.0, b=0.35.."], "expected_context_doc_ids": ["PD010"], "type": "extractive"}
+{"id": "PQ060", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["259 km driving; 159 minutes by the fastest train."], "expected_context_doc_ids": ["PD010"], "type": "extractive"}
+{"id": "PQ061", "question": "What are the leave days and carryover in year 2024?", "answers": ["22 days; carryover 6."], "expected_context_doc_ids": ["PD011"], "type": "extractive"}
+{"id": "PQ062", "question": "What is the SLO p95 and at what RPS?", "answers": ["190 ms at 300 RPS."], "expected_context_doc_ids": ["PD011"], "type": "extractive"}
+{"id": "PQ063", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["17.0 CHF."], "expected_context_doc_ids": ["PD011"], "type": "arithmetic"}
+{"id": "PQ064", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.5.."], "expected_context_doc_ids": ["PD011"], "type": "concept"}
+{"id": "PQ065", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.1, b=0.4.."], "expected_context_doc_ids": ["PD011"], "type": "extractive"}
+{"id": "PQ066", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["260 km driving; 160 minutes by the fastest train."], "expected_context_doc_ids": ["PD011"], "type": "extractive"}
+{"id": "PQ067", "question": "What are the leave days and carryover in year 2025?", "answers": ["23 days; carryover 7."], "expected_context_doc_ids": ["PD012"], "type": "extractive"}
+{"id": "PQ068", "question": "What is the SLO p95 and at what RPS?", "answers": ["191 ms at 310 RPS."], "expected_context_doc_ids": ["PD012"], "type": "extractive"}
+{"id": "PQ069", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["17.17 CHF."], "expected_context_doc_ids": ["PD012"], "type": "arithmetic"}
+{"id": "PQ070", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.52.."], "expected_context_doc_ids": ["PD012"], "type": "concept"}
+{"id": "PQ071", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.2, b=0.45.."], "expected_context_doc_ids": ["PD012"], "type": "extractive"}
+{"id": "PQ072", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["261 km driving; 161 minutes by the fastest train."], "expected_context_doc_ids": ["PD012"], "type": "extractive"}
+{"id": "PQ073", "question": "What are the leave days and carryover in year 2020?", "answers": ["24 days; carryover 2."], "expected_context_doc_ids": ["PD013"], "type": "extractive"}
+{"id": "PQ074", "question": "What is the SLO p95 and at what RPS?", "answers": ["192 ms at 320 RPS."], "expected_context_doc_ids": ["PD013"], "type": "extractive"}
+{"id": "PQ075", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["17.34 CHF."], "expected_context_doc_ids": ["PD013"], "type": "arithmetic"}
+{"id": "PQ076", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.54.."], "expected_context_doc_ids": ["PD013"], "type": "concept"}
+{"id": "PQ077", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.3, b=0.5.."], "expected_context_doc_ids": ["PD013"], "type": "extractive"}
+{"id": "PQ078", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["262 km driving; 162 minutes by the fastest train."], "expected_context_doc_ids": ["PD013"], "type": "extractive"}
+{"id": "PQ079", "question": "What are the leave days and carryover in year 2021?", "answers": ["25 days; carryover 3."], "expected_context_doc_ids": ["PD014"], "type": "extractive"}
+{"id": "PQ080", "question": "What is the SLO p95 and at what RPS?", "answers": ["193 ms at 330 RPS."], "expected_context_doc_ids": ["PD014"], "type": "extractive"}
+{"id": "PQ081", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["17.51 CHF."], "expected_context_doc_ids": ["PD014"], "type": "arithmetic"}
+{"id": "PQ082", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.56.."], "expected_context_doc_ids": ["PD014"], "type": "concept"}
+{"id": "PQ083", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.4, b=0.55.."], "expected_context_doc_ids": ["PD014"], "type": "extractive"}
+{"id": "PQ084", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["263 km driving; 163 minutes by the fastest train."], "expected_context_doc_ids": ["PD014"], "type": "extractive"}
+{"id": "PQ085", "question": "What are the leave days and carryover in year 2022?", "answers": ["26 days; carryover 4."], "expected_context_doc_ids": ["PD015"], "type": "extractive"}
+{"id": "PQ086", "question": "What is the SLO p95 and at what RPS?", "answers": ["194 ms at 340 RPS."], "expected_context_doc_ids": ["PD015"], "type": "extractive"}
+{"id": "PQ087", "question": "Using the synthetic FX in this dataset, how many CHF is 17 EUR?", "answers": ["17.68 CHF."], "expected_context_doc_ids": ["PD015"], "type": "arithmetic"}
+{"id": "PQ088", "question": "Which parameter blends BM25 and dense scores in hybrid retrieval?", "answers": ["α (alpha), here α=0.58.."], "expected_context_doc_ids": ["PD015"], "type": "concept"}
+{"id": "PQ089", "question": "What BM25 parameters are shown and what are their values?", "answers": ["k1=1.5, b=0.6.."], "expected_context_doc_ids": ["PD015"], "type": "extractive"}
+{"id": "PQ090", "question": "What are the Zürich–Geneva driving distance and the fastest train time?", "answers": ["264 km driving; 164 minutes by the fastest train."], "expected_context_doc_ids": ["PD015"], "type": "extractive"}

@@ -1,0 +1,1 @@
+{"question": "What is this project about?", "answer": "It is a modular RAG skeleton with FAISS, BM25, MMR, hybrid retrieval and cross-encoder re-ranking.", "spans": ["FAISS", "BM25", "MMR", "hybrid", "cross-encoder"]}

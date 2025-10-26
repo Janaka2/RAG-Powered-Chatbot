@@ -19,6 +19,8 @@ from core.stores.bm25 import BM25Store
 from core.retrievers.similarity import SimilarityRetriever
 from core.retrievers.mmr import MMRRetriever
 from core.retrievers.hybrid import HybridRetriever
+from core.retrievers.rrf_hybrid import RRFHybridRetriever
+from core.retrievers.rerank import CrossEncoderReranker
 from core.llm import LLM
 
 class RAGPipeline:
@@ -37,6 +39,8 @@ class RAGPipeline:
         self.sim_retriever = SimilarityRetriever(self.faiss, self.embedder)
         self.mmr_retriever = MMRRetriever(self.faiss, self.embedder, lambda_=self.cfg.retrieval.mmr_lambda)
         self.hybrid_retriever = HybridRetriever(self.faiss, self.bm25, self.embedder, alpha=self.cfg.retrieval.hybrid_alpha)
+        self.rrf_retriever = RRFHybridRetriever(self.faiss, self.bm25, self.embedder)
+        self.rerank_retriever = CrossEncoderReranker(self.hybrid_retriever, pool_factor=self.cfg.retrieval.ce_pool_factor)
 
     # --------------- Ingestion ---------------
     def rebuild_from_folder(self) -> int:
@@ -121,10 +125,16 @@ class RAGPipeline:
         top_k = self.cfg.retrieval.top_k
         if retriever == "similarity":
             contexts = self.sim_retriever.retrieve(question, top_k)
+        elif retriever == "mmr":
+            contexts = self.mmr_retriever.retrieve(question, top_k)
         elif retriever == "hybrid":
             contexts = self.hybrid_retriever.retrieve(question, top_k)
+        elif retriever == "rrf":
+            contexts = self.rrf_retriever.retrieve(question, top_k)
+        elif retriever == "hybrid+rerank":
+            contexts = self.rerank_retriever.retrieve(question, top_k)
         else:
-            contexts = self.mmr_retriever.retrieve(question, top_k)
+            contexts = self.hybrid_retriever.retrieve(question, top_k)
 
         prompt = self._build_prompt(question, contexts, system_hint)
         answer = self.llm.generate(prompt, temperature=0.0, max_tokens=600)

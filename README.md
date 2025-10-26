@@ -42,3 +42,33 @@ python app.py
 - Add **token-based chunker** (tiktoken) and PDF layout-aware parsing.
 ```
 
+
+
+---
+### Migration notes
+- Your original files are preserved under `/legacy`.
+- Keep using `from rag_core import RAGPipeline` and `import utils` — the compat shims map to the new modules.
+- Prefer importing new modules directly for future work (see `core/*`).
+
+
+### New: Cross-Encoder Re-ranking & RRF
+- **hybrid+rerank** uses `cross-encoder/ms-marco-MiniLM-L-6-v2` to re-score top candidates.
+- **rrf** performs Reciprocal Rank Fusion between FAISS and BM25 lists.
+
+
+### Evaluation (accuracy • faithfulness • latency)
+Dataset format: **JSONL** with fields:
+```json
+{"question": "...", "answer": "...", "spans": ["optional", "phrases"]}
+```
+- `answer`: reference answer for EM/F1/Jaccard.
+- `spans` (optional): phrases expected in supporting context; used for **citation recall** heuristic.
+
+Run:
+```bash
+python eval.py --dataset data/sample.jsonl --retriever hybrid --top_k 5 --ce_pool 5
+```
+Outputs go to `reports/` (CSV + JSON summary).
+
+### Cross-Encoder pool size
+In the UI, tweak **"CE pool factor (×Top-K)"** to control how many candidates are re-ranked for `hybrid+rerank`.
