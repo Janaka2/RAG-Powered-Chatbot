@@ -2,15 +2,15 @@ name: Sync to Hugging Face Space
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ]   # change if your default branch differs
   workflow_dispatch:
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     env:
-      HF_USER: janaka2
-      HF_SPACE: RAG_Powerd_Chat_Bot
+      HF_USERNAME: janaka2                 # <-- your HF username/org
+      HF_SPACE: RAG_Powerd_Chat_Bot        # <-- exact Space name (as in URL)
 
     steps:
       - name: Checkout
@@ -19,60 +19,24 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      - name: Show repo tree (debug)
+      # Optional sanity: ensure the app file is present at repo root
+      - name: Sanity check
         run: |
-          echo "== Top-level files =="
+          echo "== Repo root =="
           ls -la
-          echo "== Git status =="
-          git status
-          echo "== Expect app.py at repo root =="
-          test -f app.py && echo "OK: app.py found" || (echo "::error::app.py missing at repo root"; exit 1)
+          test -f app.py || { echo "::error::app.py missing at repo root"; exit 1; }
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install huggingface_hub
-        run: pip install --upgrade huggingface_hub
-
-      - name: Verify HF token (whoami)
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      - name: Git identity & LFS
         run: |
-          python - <<'PY'
-from huggingface_hub import whoami
-import os, sys
-tok=os.environ.get("HF_TOKEN")
-if not tok:
-    print("HF_TOKEN is missing"); sys.exit(1)
-print("whoami:", whoami(tok))
-PY
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git lfs install
 
-      - name: Ensure Space exists
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: |
-          python - <<'PY'
-from huggingface_hub import HfApi
-import os
-api=HfApi()
-user=os.environ["HF_USER"]
-space=os.environ["HF_SPACE"]
-tok=os.environ["HF_TOKEN"]
-api.create_repo(repo_id=f"{user}/{space}", repo_type="space", exist_ok=True, token=tok, space_sdk="gradio")
-print(f"ensured https://huggingface.co/spaces/{user}/{space}")
-PY
-
-      - name: Install Git LFS
-        run: git lfs install
-
-      - name: Push to HF Space (force)
+      - name: Push to HF Space (HEAD -> main)
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           set -e
-          REMOTE="https://${HF_USER}:${HF_TOKEN}@huggingface.co/spaces/${HF_USER}/${HF_SPACE}"
+          REMOTE="https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE}"
           git remote add hf "$REMOTE" || git remote set-url hf "$REMOTE"
-          echo "Pushing HEAD -> main"
           git push --force hf HEAD:main
