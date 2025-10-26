@@ -9,8 +9,8 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     env:
-      HF_USERNAME: janaka2                 # exact owner
-      HF_SPACE:    RAG_Powerd_Chat_Bot     # exact space slug
+      HF_USERNAME: janaka2
+      HF_SPACE:    RAG_Powerd_Chat_Bot
 
     steps:
       - name: Checkout
@@ -23,7 +23,7 @@ jobs:
         run: |
           ls -la
           test -f app.py || { echo "::error::app.py missing at repo root"; exit 1; }
-          test -f README.md || { echo "::warning::README.md missing"; }
+          test -f README.md || echo "::warning::README.md missing (consider Spaces front-matter)"
 
       - name: Git identity & LFS
         run: |
@@ -32,7 +32,7 @@ jobs:
           git lfs install
 
       - name: Install HF CLI
-        run: pip install --upgrade "huggingface_hub>=0.24.0"
+        run: pip install --upgrade "huggingface_hub>=0.36.0"
 
       - name: Verify token & login via credential helper
         env:
@@ -41,10 +41,8 @@ jobs:
           if [ -z "$HF_TOKEN" ]; then
             echo "::error::HF_TOKEN secret is missing"; exit 1
           fi
-          # Verify token is valid
-          huggingface-cli whoami --token "$HF_TOKEN"
-          # Add token to git credential helper (no token in URL)
-          huggingface-cli login --token "$HF_TOKEN" --add-to-git-credential
+          HUGGINGFACE_HUB_TOKEN="$HF_TOKEN" huggingface-cli whoami
+          echo "$HF_TOKEN" | huggingface-cli login --stdin --add-to-git-credential
 
       - name: Push to HF Space (HEAD -> main) without embedding token
         run: |
