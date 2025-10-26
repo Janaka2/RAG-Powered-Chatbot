@@ -33,6 +33,65 @@ jobs:
             exit 1
           fi
 
+      # --- NEW: Preflight 1 – Token sanity & identity ---
+      - name: Preflight – token sanity & identity
+        env:
+          HF_TOKEN: ${{ env.HF_TOKEN }}
+        run: |
+          set -e
+          # 0) Basic checks
+          if [ -z "$HF_TOKEN" ]; then
+            echo "::error::HF_TOKEN is empty in this repo."
+            exit 1
+          fi
+          if ! printf "%s" "$HF_TOKEN" | grep -q '^hf_'; then
+            echo "::error::HF_TOKEN is not a Hugging Face token (must start with 'hf_')."
+            exit 1
+          fi
+
+          # 1) Check for trailing newline/whitespace without printing token
+          # Print last byte hex; 0a indicates newline
+          lasthex=$(printf "%s" "$HF_TOKEN" | tail -c1 | od -An -t x1 | tr -d ' \n')
+          if [ "$lasthex" = "0a" ]; then
+            echo "::warning::HF_TOKEN appears to end with a newline. Re-paste it without trailing newline."
+          fi
+
+          # 2) whoami – confirms which HF account the token belongs to
+          echo "Calling whoami-v2 to verify token owner…"
+          curl -fsS -H "Authorization: Bearer ${HF_TOKEN}" https://huggingface.co/api/whoami-v2
+
+      # --- NEW: Preflight 2 – Space existence/permission ---
+      - name: Preflight – space existence & permission
+        env:
+          HF_USERNAME: ${{ env.HF_USERNAME }}
+          SPACE_NAME:  ${{ env.SPACE_NAME }}
+          HF_TOKEN:    ${{ env.HF_TOKEN }}
+        run: |
+          set -e
+          echo "Resolved Space: ${HF_USERNAME}/${SPACE_NAME}"
+          STATUS=$(curl -sS -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer ${HF_TOKEN}" \
+            "https://huggingface.co/api/spaces/${HF_USERNAME}/${SPACE_NAME}")
+
+          echo "GET /api/spaces/${HF_USERNAME}/${SPACE_NAME} -> HTTP ${STATUS}"
+          case "$STATUS" in
+            200)
+              echo "OK: Space exists and token can read metadata."
+              ;;
+            401|403)
+              echo "::error::Auth failed (HTTP ${STATUS}). Token invalid, lacks 'Read and write', or not owner/collaborator for this Space."
+              echo "Fix: Create a new PAT at https://huggingface.co/settings/tokens with 'Read and write' under the correct HF account."
+              exit 1
+              ;;
+            404)
+              echo "::error::Space not found (HTTP 404). Check exact slug/casing or create the Space first."
+              exit 1
+              ;;
+            *)
+              echo "::warning::Unexpected API status ${STATUS}. Proceeding, but push may still fail."
+              ;;
+          esac
+
       - name: Prepare clean deploy tree (_dist)
         run: |
           set -e
@@ -40,7 +99,7 @@ jobs:
           mkdir -p _dist
           # Core app files
           cp requirements.txt _dist/
-          # ⬇️ Minimal change: include all Python modules (app.py, assistant.py, ui.py, tools.py, config.py, __init__.py)
+          # ⬇️ Include all top-level Python modules
           cp ./*.py _dist/ || true
           # Space metadata in README (front matter)
           if [ -f README.md ]; then cp README.md _dist/; fi
@@ -55,7 +114,6 @@ jobs:
         run: |
           set -e
           ls -la _dist
-          # Validate me/Profile.json specifically (Linux is case-sensitive)
           if [ -d "_dist/me" ]; then
             if [ ! -f "_dist/me/Profile.json" ] && [ ! -f "_dist/me/profile.json" ]; then
               echo "::warning::'_dist/me/Profile.json' not found. If your app expects it, add it to the repo."
@@ -63,6 +121,10 @@ jobs:
           fi
 
       - name: Push to Hugging Face Space (force clean deploy)
+        env:
+          HF_USERNAME: ${{ env.HF_USERNAME }}
+          SPACE_NAME:  ${{ env.SPACE_NAME }}
+          HF_TOKEN:    ${{ env.HF_TOKEN }}
         run: |
           set -e
           cd _dist
@@ -71,7 +133,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Deploy to HF Space"
-          git branch -M main
-          # Use token in URL for non-interactive push
-          git remote add space https://${{ env.HF_USERNAME }}:${{ env.HF_TOKEN }}@huggingface.co/spaces/${{ env.HF_USERNAME }}/${{ env.SPACE_NAME }}
-          git push -f space main
+          # push current HEAD to remote main (works regardless of local branch name)
+          REMOTE="https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/${SPACE_NAME}"
+          echo "Pushing to: https://huggingface.co/spaces/${HF_USERNAME}/${SPACE_NAME} (HEAD -> main)"
+          git push -f "$REMOTE" HEAD:main
