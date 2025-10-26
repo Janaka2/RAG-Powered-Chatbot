@@ -9,8 +9,8 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     env:
-      HF_USER:  janaka2                 # <--- your HF username/org
-      HF_SPACE: RAG_Powerd_Chat_Bot     # <--- EXACT Space name (as in URL)
+      HF_USER:  janaka2                 # <-- EXACT username/org
+      HF_SPACE: RAG_Powerd_Chat_Bot     # <-- EXACT Space name (as in URL)
 
     steps:
       - name: Checkout repo
@@ -19,40 +19,59 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      - name: Set git identity
+      - name: Show repo tree (debug)
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          echo "== Top-level files in the repo =="
+          ls -la
+          echo "== Python files at top level =="
+          ls -la *.py || true
+          echo "== Git status =="
+          git status
 
-      - name: Install deps (hf cli)
+      - name: Quick sanity checks
+        run: |
+          if [ ! -f "app.py" ]; then
+            echo "::error::No app.py at repository root. Hugging Face Spaces needs app_file: app.py or a valid path."
+            echo "If your app is in a subfolder (e.g. src/app.py), either move it to the root OR set 'app_file: src/app.py' in README front-matter."
+            exit 1
+          fi
+          if [ ! -f "requirements.txt" ]; then
+            echo "::warning::requirements.txt not found at repo root. Add one so the Space can install dependencies."
+          fi
+          if ! grep -q "sdk:" README.md || ! grep -q "app_file:" README.md; then
+            echo "::warning::README.md front-matter missing. Add:"
+            echo "---"
+            echo "sdk: gradio"
+            echo "app_file: app.py"
+            echo "python_version: 3.12"
+            echo "---"
+          fi
+
+      - name: Install huggingface_hub
         run: |
           pipx install huggingface_hub || pip install --upgrade huggingface_hub
 
-      - name: Login to Hugging Face (adds git credential helper)
+      - name: Verify HF token and identity
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           if [ -z "${HF_TOKEN}" ]; then
-            echo "::error::HF_TOKEN is not set. Add it in GitHub > Settings > Secrets and variables > Actions"
+            echo "::error::HF_TOKEN secret is missing. Add it in GitHub > Settings > Secrets and variables > Actions."
             exit 1
           fi
-          # Add to git credential helper so we don't embed token in URL
-          huggingface-cli login --token "${HF_TOKEN}" --add-to-git-credential
-
-          # Minimal sanity check: show who we are (does NOT print token)
           python - <<'PY'
-from huggingface_hub import whoami, HfApi
+from huggingface_hub import whoami
 import os, sys
 tok=os.environ.get("HF_TOKEN")
 try:
     me=whoami(tok)
-    print(f"✅ Logged in to HF as: {me.get('name') or me.get('email')}")
+    print(f"✅ HF whoami: {me}")
 except Exception as e:
-    print("❌ HF login check failed:", e)
+    print("❌ HF whoami failed:", e)
     sys.exit(1)
 PY
 
-      - name: Ensure Space exists (create if missing)
+      - name: Ensure Space exists (create if needed)
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_USER:  ${{ env.HF_USER }}
@@ -66,7 +85,6 @@ user  = os.environ["HF_USER"]
 space = os.environ["HF_SPACE"]
 token = os.environ["HF_TOKEN"]
 repo_id = f"{user}/{space}"
-# create repo if it doesn't exist; set SDK to gradio if first time
 api.create_repo(
     repo_id=repo_id,
     repo_type="space",
@@ -80,19 +98,19 @@ PY
       - name: Install Git LFS
         run: git lfs install
 
-      - name: Push to HF Space (main -> main)
+      - name: Push to HF Space (force, token in remote URL)
         env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_USER:  ${{ env.HF_USER }}
           HF_SPACE: ${{ env.HF_SPACE }}
         run: |
           set -e
-          # Use plain URL; credentials provided via credential helper from huggingface-cli login
-          REMOTE_URL="https://huggingface.co/spaces/${HF_USER}/${HF_SPACE}"
-          echo "Pushing to ${REMOTE_URL}"
-          git push "${REMOTE_URL}" "HEAD:main"
+          REMOTE_URL="https://${HF_USER}:${HF_TOKEN}@huggingface.co/spaces/${HF_USER}/${HF_SPACE}"
+          git remote add hf "${REMOTE_URL}" || git remote set-url hf "${REMOTE_URL}"
+          echo "Pushing HEAD -> main on Space ${HF_USER}/${HF_SPACE}"
+          git push --force hf HEAD:main
 
-      # Optional: basic diagnostics if push fails
-      - name: Print remotes & HEAD (debug)
+      - name: Print remotes & HEAD (debug if failure)
         if: failure()
         run: |
           git remote -v
