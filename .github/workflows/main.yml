@@ -1,56 +1,77 @@
 name: Sync to Hugging Face Space
 
-on:
+"on":
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
   workflow_dispatch:
 
 jobs:
-  sync:
+  deploy-to-hf:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
-      HF_USERNAME: janaka2
-      HF_SPACE:    RAG_Powerd_Chat_Bot
+      HF_USERNAME: ${{ vars.HF_USERNAME }}
+      SPACE_NAME:  ${{ vars.SPACE_NAME }}
+      HF_TOKEN:    ${{ secrets.HF_TOKEN }}
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          lfs: true
+          fetch-depth: 1
 
-      - name: Sanity check files
-        run: |
-          ls -la
-          test -f app.py || { echo "::error::app.py missing at repo root"; exit 1; }
-
-      - name: Git identity & LFS
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git lfs install
-
-      - name: Install HF CLI
-        run: pip install --upgrade "huggingface_hub>=0.36.0"
-
-      - name: Validate token & login (no token printed)
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      - name: Verify inputs
         run: |
           set -e
-          if [ -z "$HF_TOKEN" ]; then
-            echo "::error::HF_TOKEN secret is missing"; exit 1
+          if [ -z "${{ env.HF_USERNAME }}" ] || [ -z "${{ env.SPACE_NAME }}" ]; then
+            echo "::error::Missing repo-level variables HF_USERNAME or SPACE_NAME."
+            exit 1
           fi
-          # quick format sanity (length only; value stays masked)
-          echo "HF_TOKEN length: ${#HF_TOKEN}"
-          # Verify identity with new CLI (env var)
-          HUGGINGFACE_HUB_TOKEN="$HF_TOKEN" hf auth whoami
-          # Cache credentials for git
-          echo "$HF_TOKEN" | hf auth login --stdin --add-to-git-credential
+          if [ -z "${{ env.HF_TOKEN }}" ]; then
+            echo "::error::Missing secret HF_TOKEN."
+            exit 1
+          fi
 
-      - name: Push to HF Space (HEAD -> main)
+      - name: Prepare clean deploy tree (_dist)
         run: |
           set -e
-          REMOTE="https://huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE}"
-          git remote add hf "$REMOTE" || git remote set-url hf "$REMOTE"
-          git push --force hf HEAD:main
+          rm -rf _dist
+          mkdir -p _dist
+          # Core app files
+          cp requirements.txt _dist/
+          # ⬇️ Minimal change: include all Python modules (app.py, assistant.py, ui.py, tools.py, config.py, __init__.py)
+          cp ./*.py _dist/ || true
+          # Space metadata in README (front matter)
+          if [ -f README.md ]; then cp README.md _dist/; fi
+          # Optional: example env for docs (HF ignores .env files)
+          if [ -f .env.example ]; then cp .env.example _dist/; fi
+          # Runtime data/assets
+          if [ -d me ]; then mkdir -p _dist/me && cp -r me/* _dist/me/; fi
+          # Keep the Space clean
+          printf ".env\n*.pyc\n__pycache__/\n" > _dist/.gitignore
+
+      - name: Validate runtime assets exist
+        run: |
+          set -e
+          ls -la _dist
+          # Validate me/Profile.json specifically (Linux is case-sensitive)
+          if [ -d "_dist/me" ]; then
+            if [ ! -f "_dist/me/Profile.json" ] && [ ! -f "_dist/me/profile.json" ]; then
+              echo "::warning::'_dist/me/Profile.json' not found. If your app expects it, add it to the repo."
+            fi
+          fi
+
+      - name: Push to Hugging Face Space (force clean deploy)
+        run: |
+          set -e
+          cd _dist
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy to HF Space"
+          git branch -M main
+          # Use token in URL for non-interactive push
+          git remote add space https://${{ env.HF_USERNAME }}:${{ env.HF_TOKEN }}@huggingface.co/spaces/${{ env.HF_USERNAME }}/${{ env.SPACE_NAME }}
+          git push -f space main
