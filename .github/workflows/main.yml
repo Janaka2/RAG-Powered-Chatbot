@@ -133,7 +133,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Deploy to HF Space"
-          # push current HEAD to remote main (works regardless of local branch name)
           REMOTE="https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/${SPACE_NAME}"
           echo "Pushing to: https://huggingface.co/spaces/${HF_USERNAME}/${SPACE_NAME} (HEAD -> main)"
           git push -f "$REMOTE" HEAD:main
+
